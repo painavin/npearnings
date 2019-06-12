@@ -50,8 +50,9 @@ Abstract:
         }
         break;
 
-    case DLL_THREAD_ATTACH:
+    case DLL_THREAD_ATTACH: __fallthrough;
     case DLL_THREAD_DETACH:
+        break;
     }
 
     return TRUE;
