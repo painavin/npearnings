@@ -4,7 +4,7 @@
 
 Module Name:
 
-    HttpUtil.h
+    Http.h
 
 Abstract:
 
@@ -13,11 +13,12 @@ Abstract:
 
 Author:
 
-    Navin Pai (navin.pai@outlook.com)
+    Navin Pai (navinp)
 
 --*/
 #pragma once
 
+#include <WinInet.h>
 
 class CHttpWinInet
 {
@@ -49,6 +50,11 @@ public:
     }
 
     //
+    // Initialize in unicode
+    //
+    bool InitializeW(_In_ LPCWSTR szUserAgent, _In_ LPCWSTR szServer);
+
+    //
     // Initialize in ascii
     //
     bool InitializeA(_In_ LPCSTR szUserAgent, _In_ LPCSTR szServer);
@@ -60,6 +66,33 @@ public:
     //
     bool RecvResponse(_Inout_ std::string& String);
 
+    //
+    // Send a request to the server in unicode
+    //
+    bool SendRequestW(_In_ LPCWSTR szVerb, _In_ LPCWSTR szRequest,
+        _In_ LPCWSTR szReferrer, _In_ LPCWSTR szHeaders, 
+        _In_ DWORD dwHeaderLength, _In_ LPVOID lpFormData, 
+        _In_ DWORD dwFormDataLength);
+
+    //
+    // Send a GET request to the server in unicode
+    //
+    bool SendGetRequestW(_In_ LPCWSTR szRequest) 
+    {
+        return SendRequestW(L"GET", szRequest, NULL, NULL, 0, NULL, 0);
+    }
+
+    //
+    // Send a POST request to the server in unicode
+    //
+    bool SendPostRequestW(_In_ LPCWSTR szRequest, _In_ LPCWSTR szReferrer, 
+        _In_ LPCWSTR szHeaders, _In_ DWORD dwHeaderLength,
+        _In_ LPVOID lpFormData, _In_ DWORD dwFormDataLength) 
+    {
+        return SendRequestW(L"POST", szRequest, szReferrer, 
+            szHeaders, dwHeaderLength, lpFormData, dwFormDataLength);
+    }
+    
     //
     // Send a request to the server in ascii
     //

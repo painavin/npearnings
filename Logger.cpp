@@ -4,22 +4,21 @@
 
 Module Name:
 
-    Tracer.cpp
+    Logger.cpp
 
 Abstract:
 
-    The function definitions for tracing 
+    The function definitions for logging functions
 
 Author:
 
-    Navin Pai (navin.pai@outlook.com)
-    Initial Revision - 06-Oct-2015
+    Navin Pai (navinp) - 06-Oct-2015
 
 --*/
-#include "pch.h"
+
+#include "stdafx.h"
+#include "FeedTime.h"
 #include "EarningsApi.h"
-#include "Tracer.h"
-#include "DateTime.h"
 
 //
 // Logging is disabled by default
@@ -29,6 +28,7 @@ static LOGGERPROC gLoggerProc = NULL;
 bool gResetData = false;
 
 
+_Use_decl_annotations_
 VOID
 WINAPI
 InitLogger(
@@ -66,10 +66,10 @@ Abstract:
 
 --*/
 {
-    int             iLen = 0;
-    va_list         argPtr;
-    CHAR            szMsg[1024];
-    DateTimeOffset  ftNow(FT_CURRENT_UTC);
+    int         iLen = 0;
+    va_list     argPtr;
+    CHAR        szMsg[1024];
+    CFeedTime   ftNow(FT_CURRENT);
 
     if (LogLevel > gLogLevel || gLoggerProc == NULL) { return; }
 

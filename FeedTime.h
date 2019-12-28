@@ -1,10 +1,10 @@
 /*++
 
-    Copyright (c) 2015 Pai Financials LLC
+Copyright (c) 2015 Pai Financials LLC
 
 Module Name:
 
-    DateTime.h
+    FeedTime.h
 
 Abstract:
 
@@ -12,8 +12,7 @@ Abstract:
 
 Author:
 
-    Navin Pai (navin.pai@outlook.com)
-    Initial revision - 06-Oct-2015
+    Navin Pai (navinp) - 06-Oct-2015
 
 --*/
 #pragma once
@@ -27,7 +26,7 @@ Author:
 #define TIME_IN_SECS(_H, _M, _S)    ((((_H * 60) + _M) * 60) + _S)
 #define NYSE_START_TIME             TIME_IN_SECS(9, 30, 0)
 #define NYSE_END_TIME               TIME_IN_SECS(16, 00, 0)
-#define FT_CURRENT_UTC              TzUtc, _time32(NULL)
+#define FT_CURRENT                  TzUtc, _time32(NULL)
 
 // Supported timezones
 enum ETimeZone
@@ -41,11 +40,11 @@ enum ETimeZone
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// class CTimeZoneInfo
+// class CFeedTimeZone
 //
 //  The helper class to convert the timezone 
 //
-class CTimeZoneInfo
+class CFeedTimeZone
 {
 private:
 
@@ -72,7 +71,7 @@ private:
     ETimeZone   m_timeZone;
 
 public:
-    CTimeZoneInfo(ETimeZone TimeZone);
+    CFeedTimeZone(ETimeZone TimeZone);
 
     bool FromGmtToLocal(__inout tm *pTm);
     bool FromLocalToGmt(__inout tm *pTm);
@@ -81,24 +80,24 @@ public:
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// class DateTimeSpan
+// class CFeedTimeSpan
 //
 //  The helper class to do the time arithematic. Since the value is 
 //  represented as the time difference, it is expressed in terms of units 
 //  instead of regular format
 //
-class DateTimeSpan
+class CFeedTimeSpan
 {
 private:
     __time32_t  m_timeSpan;
 
     // Constructors
 public:
-    DateTimeSpan(void) : m_timeSpan(0) { }
+    CFeedTimeSpan(void) : m_timeSpan(0) { }
 
-    DateTimeSpan(__time32_t time) : m_timeSpan(time) { }
+    CFeedTimeSpan(__time32_t time) : m_timeSpan(time) { }
  
-    DateTimeSpan(int nDays, int nHours, int nMins, int nSec) {
+    CFeedTimeSpan(int nDays, int nHours, int nMins, int nSec) {
         m_timeSpan = nSec + 60 * (nMins + 60 * (nHours + (24 * nDays)));
     }
 
@@ -124,13 +123,13 @@ public:
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// class DateTimeOffset
+// class CFeedTime
 //
 //  Time manipulation class. The time is always stored in GMT time zone. If 
-//  a local time or any other time zone is passed to the DateTimeOffset while 
-//  construction, the time is converted to the GMT time zone.
+//  a local time or any other time zone is passed to the CFeedTime while 
+//  construction, the time is converted to the GMt time zone.
 //
-class DateTimeOffset
+class CFeedTime
 {
 public:
     enum {
@@ -148,54 +147,54 @@ private:
 
     // Constructors
 public:
-    DateTimeOffset(void) : m_gmtTime(0) { }
+    CFeedTime(void) : m_gmtTime(0) { }
 
-    DateTimeOffset(ETimeZone TimeZone, __time32_t Time);
+    CFeedTime(ETimeZone TimeZone, __time32_t Time);
 
-    DateTimeOffset(ETimeZone TimeZone, int nYear, int nMonth, int nDay, 
+    CFeedTime(ETimeZone TimeZone, int nYear, int nMonth, int nDay, 
         int nHour = 0, int nMin = 0, int nSec = 0);
 
     // Operators
 public:
-    inline DateTimeOffset& operator += (DateTimeSpan span) {
+    inline CFeedTime& operator += (CFeedTimeSpan span) {
         m_gmtTime += span.GetTimeSpan();
         return *this;
     }
 
-    inline DateTimeOffset& operator -= (DateTimeSpan span) {
+    inline CFeedTime& operator -= (CFeedTimeSpan span) {
         m_gmtTime -= span.GetTimeSpan();
         return *this;
     }
     
-    inline DateTimeSpan operator - (DateTimeOffset time) {
-        return DateTimeSpan(m_gmtTime - time.m_gmtTime);
+    inline CFeedTimeSpan operator - (CFeedTime time) {
+        return CFeedTimeSpan(m_gmtTime - time.m_gmtTime);
     }
 
-    inline DateTimeOffset operator - (DateTimeSpan span) {
-        return DateTimeOffset(TzUtc, m_gmtTime - span.GetTimeSpan());
+    inline CFeedTime operator - (CFeedTimeSpan span) {
+        return CFeedTime(TzUtc, m_gmtTime - span.GetTimeSpan());
     }
 
-    inline DateTimeOffset operator + (DateTimeSpan span) {
-        return DateTimeOffset(TzUtc, m_gmtTime + span.GetTimeSpan());
+    inline CFeedTime operator + (CFeedTimeSpan span) {
+        return CFeedTime(TzUtc, m_gmtTime + span.GetTimeSpan());
     }
 
-    inline bool operator <= (DateTimeOffset time) {
+    inline bool operator <= (CFeedTime time) {
         return (m_gmtTime <= time.m_gmtTime);
     }
 
-    inline bool operator < (DateTimeOffset time) {
+    inline bool operator < (CFeedTime time) {
         return (m_gmtTime < time.m_gmtTime);
     }
 
-    inline bool operator >= (DateTimeOffset time) {
+    inline bool operator >= (CFeedTime time) {
         return (m_gmtTime >= time.m_gmtTime);
     }
 
-    inline bool operator > (DateTimeOffset time) {
+    inline bool operator > (CFeedTime time) {
         return (m_gmtTime > time.m_gmtTime);
     }
 
-    inline bool operator == (DateTimeOffset time) {
+    inline bool operator == (CFeedTime time) {
         return (m_gmtTime == time.m_gmtTime);
     }
 

@@ -4,7 +4,7 @@
 
 Module Name:
 
-    HttpUtil.cpp
+    Http.cpp
 
 Abstract:
 
@@ -13,14 +13,50 @@ Abstract:
 
 Author:
 
-    Navin Pai (navin.pai@outlook.com)
-    Initial Revision - 06-Oct-2015
+    Navin Pai (navinp)
 
 --*/
-#include "pch.h"
-#include "HttpUtil.h"
+#include "StdAfx.h"
+#include "Http.h"
+
 
 #pragma comment(lib, "WinInet.lib")
+
+_Use_decl_annotations_
+bool 
+CHttpWinInet::InitializeW(
+    LPCWSTR szUserAgent,
+    LPCWSTR szServer
+    )
+{
+    bool retVal = false;
+    EnterFunc();
+
+    _ASSERT(m_hSession == NULL);
+    CHK_EXP(m_hSession != NULL);
+
+
+    // Initialize the http
+    m_hSession = InternetOpenW(szUserAgent, 
+        INTERNET_OPEN_TYPE_PRECONFIG, 
+        NULL, NULL, 0);
+    CHK_EXP_ERR(m_hSession == NULL, "InternetOpenW");
+
+
+    // Connect to the http server
+    m_hConnection = InternetConnectW(m_hSession, szServer, 
+        INTERNET_DEFAULT_HTTP_PORT, NULL, NULL, 
+        INTERNET_SERVICE_HTTP, 0, NULL);
+    CHK_EXP_ERR(m_hConnection == NULL, "InternetConnectW");
+
+    retVal = true;
+
+Cleanup:
+
+    LeaveFunc();
+    return retVal;
+}
+
 
 _Use_decl_annotations_
 bool

@@ -1,0 +1,32 @@
+;
+; NpUtility.def : Declares the module parameters for the DLL.
+;
+LIBRARY      "NpEarnings"
+
+;
+; Explicit exports can go here
+;
+EXPORTS
+    ;
+    ; Logging related functions
+    ;
+    InitLogger
+    
+    ;
+    ; Earnings related exports
+    ;
+    GetEarningsReleaseDate
+    GetEarningsReleaseTime
+    GetDaysToEarningsRelease
+    GetEarningsConfirmation
+    GetEarningsNotes
+    SetEarningsNotes
+
+    ;
+    ; Forex releated exports
+    ;
+    GetNextFxEventDate
+    GetNextFxEventTime
+    GetNextFxEventDuration
+    GetNextFxEventDesc
+    GetNextFxEventImp

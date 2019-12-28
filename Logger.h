@@ -4,16 +4,15 @@ Copyright (c) 2015 Pai Financials LLC
 
 Module Name:
 
-    Tracer.h
+    Logger.h
 
 Abstract:
 
-    The function declarations for tracing functions
+    The function declarations for logging functions
 
 Author:
 
-    Navin Pai (navin.pai@outlook.com)
-    Initial Revision - 06-Oct-2015
+    Navin Pai (navinp) - 06-Oct-2015
 
 --*/
 #pragma once

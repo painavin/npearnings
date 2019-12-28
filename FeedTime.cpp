@@ -4,7 +4,7 @@
 
 Module Name:
 
-    DateTime.cpp
+    FeedTime.cpp
 
 Abstract:
 
@@ -12,32 +12,31 @@ Abstract:
 
 Author:
 
-    Navin Pai (navin.pai@outlook.com)
-    Initial Revision - 06-Oct-2015
+    Navin Pai (navinp) - 06-Oct-2015
 
 --*/
-#include "pch.h"
-#include "DateTime.h"
+#include "stdafx.h"
+#include "FeedTime.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// CTimeZoneInfo
+// CFeedTimeZone
 //
 #define TIMEZONE_PATH               L"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Time Zones\\"
 
-LPCWSTR CTimeZoneInfo::SZTimeZone[] = {
+LPCWSTR CFeedTimeZone::SZTimeZone[] = {
     L"GMT Standard Time",
     L"Eastern Standard Time",
     L"Pacific Standard Time",
     L"India Standard Time",
 };
 
-bool CTimeZoneInfo::IsTimeZoneInit = false;
-TIME_ZONE_INFORMATION CTimeZoneInfo::TimeZoneInfo[MAX_TIME_ZONES];
+bool CFeedTimeZone::IsTimeZoneInit = false;
+TIME_ZONE_INFORMATION CFeedTimeZone::TimeZoneInfo[MAX_TIME_ZONES];
 
 bool
-CTimeZoneInfo::InitializeTimezones(
+CFeedTimeZone::InitializeTimezones(
     void
     )
 /*++
@@ -81,7 +80,7 @@ Description:
 
 
 bool
-CTimeZoneInfo::ReadTimeZoneInfoRegistry(
+CFeedTimeZone::ReadTimeZoneInfoRegistry(
     LPCWSTR lpszTimeZone,
     LPTIME_ZONE_INFORMATION lpTimeZoneInfo
     )
@@ -122,7 +121,7 @@ CTimeZoneInfo::ReadTimeZoneInfoRegistry(
 }
 
 
-CTimeZoneInfo::CTimeZoneInfo(ETimeZone TimeZone)
+CFeedTimeZone::CFeedTimeZone(ETimeZone TimeZone)
 {
     if (! IsTimeZoneInit)
     {
@@ -134,7 +133,7 @@ CTimeZoneInfo::CTimeZoneInfo(ETimeZone TimeZone)
 
 
 bool
-CTimeZoneInfo::FromGmtToLocal(
+CFeedTimeZone::FromGmtToLocal(
     tm *pTm
     )
 {
@@ -174,7 +173,7 @@ CTimeZoneInfo::FromGmtToLocal(
 
 
 bool
-CTimeZoneInfo::FromLocalToGmt(
+CFeedTimeZone::FromLocalToGmt(
     tm *pTm
     )
 {
@@ -216,9 +215,9 @@ CTimeZoneInfo::FromLocalToGmt(
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// DateTimeOffset Constructors
+// CFeedTime Constructors
 //
-DateTimeOffset::DateTimeOffset(
+CFeedTime::CFeedTime(
     ETimeZone TimeZone, 
     __time32_t Time
     )
@@ -245,7 +244,7 @@ DateTimeOffset::DateTimeOffset(
     case TzIndia:
     case TzPacific:
         {
-            CTimeZoneInfo  newTz(TimeZone);
+            CFeedTimeZone  newTz(TimeZone);
             struct tm   tmTemp;
 
             _gmtime32_s(&tmTemp, &Time);
@@ -260,7 +259,7 @@ DateTimeOffset::DateTimeOffset(
 }
 
 
-DateTimeOffset::DateTimeOffset(
+CFeedTime::CFeedTime(
     ETimeZone TimeZone,
     int nYear, int nMonth, int nDay, 
     int nHour, int nMin, int nSec)
@@ -304,7 +303,7 @@ DateTimeOffset::DateTimeOffset(
     case TzIndia:
     case TzPacific:
         {
-            CTimeZoneInfo  newTz(TimeZone);
+            CFeedTimeZone  newTz(TimeZone);
 
             newTz.FromLocalToGmt(&tmTemp);
             m_gmtTime = _mkgmtime32(&tmTemp);
@@ -321,10 +320,10 @@ DateTimeOffset::DateTimeOffset(
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// DateTimeOffset Properties
+// CFeedTime Properties
 //
 UINT32
-DateTimeOffset::GetTzTime(
+CFeedTime::GetTzTime(
     ETimeZone TimeZone
     )
 {
@@ -337,7 +336,7 @@ DateTimeOffset::GetTzTime(
     }
     else
     {
-        CTimeZoneInfo  newTz(TimeZone);
+        CFeedTimeZone  newTz(TimeZone);
 
         _gmtime32_s(&tmTemp, &m_gmtTime);
         newTz.FromGmtToLocal(&tmTemp);
@@ -347,13 +346,13 @@ DateTimeOffset::GetTzTime(
 
 
 UINT32
-DateTimeOffset::GetUtcStartOfTradingDay(
+CFeedTime::GetUtcStartOfTradingDay(
     void
     )
 {
     // BUG:
     struct tm       tmTemp;
-    CTimeZoneInfo   nyseTz(TzEastern);
+    CFeedTimeZone   nyseTz(TzEastern);
     __time32_t      easternTime;
     
     // Get the eastern time
@@ -372,13 +371,13 @@ DateTimeOffset::GetUtcStartOfTradingDay(
 
 
 UINT32
-DateTimeOffset::GetUtcEndOfTradingDay(
+CFeedTime::GetUtcEndOfTradingDay(
     void
     )
 {
     // BUG:
     struct tm       tmTemp;
-    CTimeZoneInfo   nyseTz(TzEastern);
+    CFeedTimeZone   nyseTz(TzEastern);
     __time32_t      easternTime;
     
     // Get the eastern time
@@ -397,7 +396,7 @@ DateTimeOffset::GetUtcEndOfTradingDay(
 
 
 UINT32
-DateTimeOffset::GetUtcBeginOfWeek(
+CFeedTime::GetUtcBeginOfWeek(
     void
     )
 /*+
@@ -431,7 +430,7 @@ Abstract
 
 
 UINT32
-DateTimeOffset::GetUtcEndOfWeek(
+CFeedTime::GetUtcEndOfWeek(
     void
     )
 {
@@ -458,10 +457,10 @@ DateTimeOffset::GetUtcEndOfWeek(
 
 
 bool
-DateTimeOffset::IsNyseClosed()
+CFeedTime::IsNyseClosed()
 {
     struct tm   tmTemp;
-    CTimeZoneInfo  nyseTz(TzEastern);
+    CFeedTimeZone  nyseTz(TzEastern);
 
     _gmtime32_s(&tmTemp, &m_gmtTime);
     nyseTz.FromGmtToLocal(&tmTemp);
@@ -584,7 +583,7 @@ DateTimeOffset::IsNyseClosed()
 
 
 bool
-DateTimeOffset::IsNyseRegularHours(
+CFeedTime::IsNyseRegularHours(
     PUINT32 Index
     )
 /*++
@@ -608,7 +607,7 @@ Description:
 
 
 bool
-DateTimeOffset::IsNyse930AM(
+CFeedTime::IsNyse930AM(
     void
     )
 /*++
@@ -627,7 +626,7 @@ Description:
 
 
 bool
-DateTimeOffset::IsNyse359PM(
+CFeedTime::IsNyse359PM(
     void
     )
 /*++
@@ -646,7 +645,7 @@ Description:
 
 
 int 
-DateTimeOffset::FormatW(
+CFeedTime::FormatW(
     ETimeZone TimeZone, 
     LPCWSTR pszFormat, 
     LPWSTR TimeString, 
@@ -669,7 +668,7 @@ DateTimeOffset::FormatW(
     case TzEastern:
     case TzPacific:
         {
-            CTimeZoneInfo  newTz(TimeZone);
+            CFeedTimeZone  newTz(TimeZone);
 
             _gmtime32_s(&tmTemp, &m_gmtTime);
             newTz.FromGmtToLocal(&tmTemp);
@@ -686,7 +685,7 @@ DateTimeOffset::FormatW(
 
 
 int 
-DateTimeOffset::FormatA(
+CFeedTime::FormatA(
     ETimeZone TimeZone, 
     LPCSTR pszFormat,
     LPSTR TimeString, 
@@ -708,7 +707,7 @@ DateTimeOffset::FormatA(
     case TzEastern:
     case TzPacific:
         {
-            CTimeZoneInfo  newTz(TimeZone);
+            CFeedTimeZone  newTz(TimeZone);
 
             _gmtime32_s(&tmTemp, &m_gmtTime);
             newTz.FromGmtToLocal(&tmTemp);
@@ -724,7 +723,7 @@ DateTimeOffset::FormatA(
 }
 
 bool
-DateTimeOffset::FromStringWeb(
+CFeedTime::FromStringWeb(
     __in LPCSTR DateString)
 /*++
 
@@ -744,7 +743,7 @@ Return Value:
 
 --*/
 {
-    static const char* sMonths[] = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+    static char* sMonths[] = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
     "Aug", "Sep", "Oct", "Nov", "Dec" };
     UINT day, month = 0;
 
@@ -770,13 +769,13 @@ Return Value:
     //
     // Year is tricky. 
     //
-    DateTimeOffset ftToday(FT_CURRENT_UTC);
-    DateTimeOffset ftEarnings(TzEastern, ftToday.GetLocalYear() + 1, month, day);
+    CFeedTime ftToday(FT_CURRENT);
+    CFeedTime ftEarnings(TzEastern, ftToday.GetLocalYear() + 1, month, day);
 
-    DateTimeSpan diff = ftEarnings - ftToday;
+    CFeedTimeSpan diff = ftEarnings - ftToday;
     if (diff.GetDays() > 100)
     {
-        ftEarnings = DateTimeOffset(TzEastern, ftToday.GetLocalYear(), month, day);
+        ftEarnings = CFeedTime(TzEastern, ftToday.GetLocalYear(), month, day);
     }
 
     //
@@ -789,7 +788,7 @@ Return Value:
 
 
 bool
-DateTimeOffset::FromStringStd(
+CFeedTime::FromStringStd(
     __in LPCSTR DateString)
 /*++
 
@@ -826,7 +825,7 @@ Return Value:
 
     // Assign the parsed date, The parsed date is in eastern timezone
     // so we convert it to GMT
-    *this = DateTimeOffset(TzEastern, nYear, nMonth, nDate);
+    *this = CFeedTime(TzEastern, nYear, nMonth, nDate);
 
     return true;
 }
