@@ -1,5 +1,20 @@
-// pch.cpp: source file corresponding to the pre-compiled header
+/*++
+
+    Copyright (c) Pai Financials LLC
+
+Module Name:
+
+    pch.cpp
+
+Abstract:
+
+    The precompiled cpp function
+
+Author:
+
+    Navin Pai (navin.pai@outlook.com)
+    Initial Revision - 06-Oct-2015
+
+--*/
 
 #include "pch.h"
-
-// When you are using pre-compiled headers, this source file is necessary for compilation to succeed.

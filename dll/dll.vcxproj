@@ -93,7 +93,6 @@
   <ItemGroup>
     <ClInclude Include="DateTime.h" />
     <ClInclude Include="EarningsApi.h" />
-    <ClInclude Include="framework.h" />
     <ClInclude Include="HttpUtil.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="resource.h" />

@@ -12,7 +12,8 @@ Abstract:
 
 Author:
 
-    Navin Pai (navinp) - 06-Oct-2015
+    Navin Pai (navin.pai@outlook.com)
+    Initial Revision - 06-Oct-2015
 
 --*/
 

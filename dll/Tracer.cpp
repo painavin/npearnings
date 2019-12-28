@@ -12,7 +12,8 @@ Abstract:
 
 Author:
 
-    Navin Pai (navin.pai@outlook.com) - 06-Oct-2015
+    Navin Pai (navin.pai@outlook.com)
+    Initial Revision - 06-Oct-2015
 
 --*/
 #include "pch.h"
@@ -28,7 +29,6 @@ static LOGGERPROC gLoggerProc = NULL;
 bool gResetData = false;
 
 
-_Use_decl_annotations_
 VOID
 WINAPI
 InitLogger(
