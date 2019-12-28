@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NpEarnings", "dll\NpEarnings.vcxproj", "{2E99DBE7-9BC3-4C43-8D65-EAE20876CB1A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dll", "dll", "{2A1DA9C0-DA16-466F-80FB-D1511553B90A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{2DC6BE9E-AE6C-4350-95B3-3DCEC8490059}"
+	ProjectSection(SolutionItems) = preProject
+		NpEarnings Help.htm = NpEarnings Help.htm
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "exe", "exe", "{28BE8E04-3905-4640-8EB4-67D8A0A79789}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "npearnings", "exe\npearnings.vcxproj", "{12DAC2AB-D42A-4C74-9FCE-3CA78DD7D941}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2E99DBE7-9BC3-4C43-8D65-EAE20876CB1A}.Debug|x86.ActiveCfg = Debug|Win32
+		{2E99DBE7-9BC3-4C43-8D65-EAE20876CB1A}.Debug|x86.Build.0 = Debug|Win32
+		{2E99DBE7-9BC3-4C43-8D65-EAE20876CB1A}.Release|x86.ActiveCfg = Release|Win32
+		{2E99DBE7-9BC3-4C43-8D65-EAE20876CB1A}.Release|x86.Build.0 = Release|Win32
+		{12DAC2AB-D42A-4C74-9FCE-3CA78DD7D941}.Debug|x86.ActiveCfg = Debug|Win32
+		{12DAC2AB-D42A-4C74-9FCE-3CA78DD7D941}.Debug|x86.Build.0 = Debug|Win32
+		{12DAC2AB-D42A-4C74-9FCE-3CA78DD7D941}.Release|x86.ActiveCfg = Release|Win32
+		{12DAC2AB-D42A-4C74-9FCE-3CA78DD7D941}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2E99DBE7-9BC3-4C43-8D65-EAE20876CB1A} = {2A1DA9C0-DA16-466F-80FB-D1511553B90A}
+		{12DAC2AB-D42A-4C74-9FCE-3CA78DD7D941} = {28BE8E04-3905-4640-8EB4-67D8A0A79789}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BBCDA3E5-DE86-469A-8802-1D3F9EFB63B0}
+	EndGlobalSection
+EndGlobal

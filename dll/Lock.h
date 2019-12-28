@@ -1,3 +1,20 @@
+/*++
+
+    Copyright (c) Pai Financials LLC. All rights reserved.
+
+Module Name:
+
+    Lock.h
+
+Abstract:
+
+    This file contains the class declaration for auto lock
+
+Author:
+
+    Navin Pai (navin.pai@outlook.com)
+
+--*/
 #pragma once
 
 // Lock management

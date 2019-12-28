@@ -1,6 +1,6 @@
 /*++
 
-    Copyright (c) Pai Financials LLC
+    Copyright (c) Pai Financials LLC. All rights reserved.
 
 Module Name:
 
@@ -13,7 +13,7 @@ Abstract:
 
 Author:
 
-    Navin Pai (navinp)
+    Navin Pai (navin.pai@outlook.com)
 
 --*/
 

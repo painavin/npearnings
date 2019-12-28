@@ -1,6 +1,6 @@
 /*++
 
-    Copyright (c) Pai Financials LLC
+    Copyright (c) Pai Financials LLC. All rights reserved.
 
 Module Name:
 
@@ -12,7 +12,7 @@ Abstract:
 
 Author:
 
-    Navin Pai (navinp) - 06-Oct-2015
+    Navin Pai (navin.pai@outlook.com)
 
 --*/
 #include "stdafx.h"
@@ -24,7 +24,6 @@ Author:
 #define MAX_CURRENCY_LENGTH         6
 
 
-_Use_decl_annotations_
 PEARNINGS_DATA
 GetEarningsData(
     LPCSTR Ticker
@@ -126,6 +125,7 @@ Abstract:
         retVal = pData->StrEarningsTime.c_str();
     }
 
+    LeaveFunc();
     return retVal;
 }
 
@@ -155,6 +155,7 @@ Abstract:
         retVal = pData->StrEarningsDays.c_str();
     }
 
+    LeaveFunc();
     return retVal;
 }
 
@@ -249,11 +250,11 @@ Abstract:
         LogTrace("SetEarningsNotes Setting[%s]: %s", 
             pData->StrTicker.c_str(), Notes);
     }
+
     LeaveFunc();
 }
 
 
-_Use_decl_annotations_
 PFOREX_EVENT
 GetForexEvent(
     LPCSTR CurrencyPair

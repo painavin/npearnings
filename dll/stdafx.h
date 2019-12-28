@@ -1,6 +1,6 @@
 /*++
 
-Copyright (c) 2015 Pai Financials LLC
+    Copyright (c) Pai Financials LLC. All rights reserved.
 
 Module Name:
 
@@ -14,23 +14,28 @@ Abstract:
 
 Author:
 
-    Navin Pai (navinp) - 06-Oct-2015
+    Navin Pai (navin.pai@outlook.com)
 
 --*/
 #pragma once
 
-#include "targetver.h"
+// Including SDKDDKVer.h defines the highest available Windows platform.
+// If you wish to build your application for a previous Windows platform, include WinSDKVer.h and
+// set the _WIN32_WINNT macro to the platform you wish to support before including SDKDDKVer.h.
+
+#include <SDKDDKVer.h>
 
 #define WIN32_LEAN_AND_MEAN             // Exclude rarely-used stuff from Windows headers
+
+#include <windows.h>
+#include <Shlwapi.h>
+#include <WinInet.h>
 
 #include <time.h>
 #include <stdio.h>
 #include <tchar.h>
 #include <stdlib.h>
 #include <stdarg.h>
-
-#include <windows.h>
-#include <Shlwapi.h>
 
 #include <map>
 #include <deque>
@@ -100,5 +105,6 @@ typedef std::string String;
 //
 // Add local files
 //
+#include "EarningsApi.h"
 #include "Logger.h"
 

@@ -1,6 +1,6 @@
 /*++
 
-Copyright (c) Pai Financials
+    Copyright (c) Pai Financials LLC. All rights reserved.
 
 Module Name:
 
@@ -13,13 +13,13 @@ Abstract:
 
 Author:
 
-    Navin Pai   -   Mar-05-2012
+    Navin Pai (navin.pai@outlook.com)
 
 --*/
 #pragma once
 
 #include "FeedTime.h"
-#include "Http.h"
+#include "HttpHelper.h"
 #include "Lock.h"
 
 #define FOREX_QUERY_INTERVAL    30

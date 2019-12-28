@@ -18,13 +18,9 @@
     <None Include="NpEarnings.def">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="NpEarnings Help.htm" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
@@ -33,16 +29,10 @@
     <ClInclude Include="FeedTime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Http.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Lock.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Logger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EarningsApi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EarningsMgr.h">
@@ -54,15 +44,18 @@
     <ClInclude Include="EarningsMain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="EarningsApi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FeedTime.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Http.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Logger.cpp">
@@ -78,6 +71,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="EarningsMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HttpHelper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

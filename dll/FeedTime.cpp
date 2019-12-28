@@ -1,6 +1,6 @@
 /*++
 
-    Copyright (c) Pai Financials LLC
+    Copyright (c) Pai Financials LLC. All rights reserved.
 
 Module Name:
 
@@ -12,7 +12,7 @@ Abstract:
 
 Author:
 
-    Navin Pai (navinp) - 06-Oct-2015
+    Navin Pai (navin.pai@outlook.com)
 
 --*/
 #include "stdafx.h"

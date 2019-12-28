@@ -1,6 +1,6 @@
 /*++
 
-    Copyrights (c) Pai Financials
+    Copyright (c) Pai Financials LLC. All rights reserved.
 
 Module Name:
 
@@ -12,12 +12,12 @@ Abstract:
 
 Author:
 
-    Navin Pai (navinp)
+    Navin Pai (navin.pai@outlook.com)
 
 --*/
 #pragma once
 #include "FeedTime.h"
-#include "Http.h"
+#include "HttpHelper.h"
 #include "Lock.h"
 
 extern bool gResetData;

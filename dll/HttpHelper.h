@@ -1,10 +1,10 @@
 /*++
 
-    Copyrights (c) Pai Financials
+    Copyright (c) Pai Financials LLC. All rights reserved.
 
 Module Name:
 
-    Http.h
+    HttpHelper.h
 
 Abstract:
 
@@ -13,12 +13,10 @@ Abstract:
 
 Author:
 
-    Navin Pai (navinp)
+    Navin Pai (navin.pai@outlook.com)
 
 --*/
 #pragma once
-
-#include <WinInet.h>
 
 class CHttpWinInet
 {

@@ -1,10 +1,10 @@
 /*++
 
-    Copyrights (c) Pai Financials
+    Copyright (c) Pai Financials LLC. All rights reserved.
 
 Module Name:
 
-    Http.cpp
+    HttpHelper.cpp
 
 Abstract:
 
@@ -13,11 +13,11 @@ Abstract:
 
 Author:
 
-    Navin Pai (navinp)
+    Navin Pai (navin.pai@outlook.com)
 
 --*/
 #include "StdAfx.h"
-#include "Http.h"
+#include "HttpHelper.h"
 
 
 #pragma comment(lib, "WinInet.lib")
@@ -97,7 +97,7 @@ CHttpWinInet::RecvResponse(
     std::string& Response
     )
 {
-    CHAR chBuffer[4096];
+    CHAR chBuffer[4096] = {};
     DWORD dwBytesRead = _countof(chBuffer);
     DWORD dwStatusCode = 0;
 
@@ -116,6 +116,7 @@ CHttpWinInet::RecvResponse(
         goto Cleanup;
     }
 
+    chBuffer[dwBytesRead] = 0;
     dwStatusCode = (DWORD)atol(chBuffer);
     CHK_EXP(dwStatusCode != HTTP_STATUS_OK);
 
@@ -289,7 +290,7 @@ CHttpWinInetSecure::RecvResponse(
     std::string& Response
     )
 {
-    CHAR chBuffer[4096];
+    CHAR chBuffer[4096] = {};
     DWORD dwBytesRead = _countof(chBuffer);
     DWORD dwStatusCode = 0;
 
@@ -308,6 +309,7 @@ CHttpWinInetSecure::RecvResponse(
         goto Cleanup;
     }
 
+    chBuffer[dwBytesRead] = 0;
     dwStatusCode = (DWORD) atol(chBuffer);
     CHK_EXP(dwStatusCode != HTTP_STATUS_OK);
 

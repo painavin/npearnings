@@ -1,6 +1,6 @@
 /*++
 
-Copyright (c) 2015 Pai Financials LLC
+    Copyright (c) Pai Financials LLC. All rights reserved.
 
 Module Name:
 
@@ -12,7 +12,7 @@ Abstract:
 
 Author:
 
-    Navin Pai (navinp) - 06-Oct-2015
+    Navin Pai (navin.pai@outlook.com)
 
 --*/
 #pragma once
@@ -40,9 +40,9 @@ protected:
     String  m_sEarningsFile;                // This string stores the name of earnings csv file
     String  m_sIniFile;                     // This string stores the name of ini file.
 
-    int     m_nPostEarningsDays;            // days past earnings
-    int     m_nEarningsQueryDays;           // days pre earnings 
-    int     m_nEarningsRandDays;            // randomly distribute
+    int     m_nPostEarningsDays = 0;        // days past earnings
+    int     m_nEarningsQueryDays = 0;       // days pre earnings 
+    int     m_nEarningsRandDays = 0;        // randomly distribute
 
 
 protected:

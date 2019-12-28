@@ -1,10 +1,10 @@
 /*++
 
-    Copyright (c) 2015 Pai Financials LLC
+    Copyright (c) Pai Financials LLC. All rights reserved.
 
 Module Name:
 
-    EarningsApi.h
+    dllmain.h
 
 Abstract:
 
@@ -12,7 +12,7 @@ Abstract:
 
 Author:
 
-    Navin Pai (navinp) 
+    Navin Pai (navin.pai@outlook.com)
 
 --*/
 #pragma once
@@ -20,6 +20,13 @@ Author:
 
 extern "C" 
 {
+    //
+    // Logging levels
+    //
+#define NP_LOG_ERROR            1
+#define NP_LOG_WARNING          2
+#define NP_LOG_INFO             3
+#define NP_LOG_TRACE            4
 
 //
 // The callback proc

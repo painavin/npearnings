@@ -1,6 +1,22 @@
-//{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ generated include file.
-// Used by NpEarnings.rc
+/*++
+
+    Copyright (c) Pai Financials LLC. All rights reserved.
+
+Module Name:
+
+    resources.h
+
+Abstract:
+
+    {{NO_DEPENDENCIES}}
+     Microsoft Visual C++ generated include file.
+     Used by NpEarnings.rc
+
+Author:
+
+    Navin Pai (navin.pai@outlook.com)
+
+--*/
 
 // Next default values for new objects
 // 
