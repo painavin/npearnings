@@ -1,6 +1,24 @@
 /*++
 
-    Copyright (c) Pai Financials LLC. All rights reserved.
+    Copyright (c) Pai Financials LLC.
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
 
 Module Name:
 
@@ -12,7 +30,7 @@ Abstract:
 
 Author:
 
-    Navin Pai (navin.pai@outlook.com)
+    nabieasaurus
 
 --*/
 #pragma once
@@ -24,17 +42,17 @@ extern bool gResetData;
 
 /*++
 
-Struct:
+Class:
 
-    EARNINGS_DATA
+    CEarningsData
 
 Description:
 
     This structure stores the earnings information about the ticker. An instance
-    of this class represents one ticket symbol.
+    of this class represents one ticker symbol.
 
 --*/
-struct EARNINGS_DATA
+class CEarningsData
 {
 public:
     bool        IsAvailable;            // If the earnings data is available on the website
@@ -56,7 +74,7 @@ private:
     // Constructors
 public:
 
-    EARNINGS_DATA(_In_ LPCSTR Ticker, 
+    CEarningsData(_In_ LPCSTR Ticker, 
         _In_ bool Available = false,
         _In_ UINT32 QueryDt = 0,
         _In_ UINT32 EarningsDt = 0,
@@ -150,8 +168,8 @@ public:
     }
 };
 
-typedef EARNINGS_DATA*                      PEARNINGS_DATA;
-typedef std::map<String, PEARNINGS_DATA>    EARNINGS_MAP;
+typedef CEarningsData*                      CEarningsDataPtr_t;
+typedef std::map<String, CEarningsDataPtr_t>    EARNINGS_MAP;
 
 
 /*++
@@ -230,14 +248,14 @@ protected:
     //
     bool ParseHtmlForEarningsDate(
         _Inout_ String& HtmlPage,
-        _Inout_ PEARNINGS_DATA PtrEarningsData
+        _Inout_ CEarningsDataPtr_t PtrEarningsData
         );
 
     //
     // Query the earnings data from datasource
     //
     void QueryEarningsFromWebsite(
-        _Inout_ PEARNINGS_DATA PtrEarningsData
+        _Inout_ CEarningsDataPtr_t PtrEarningsData
         );
 
     // C'tor/D'tor
@@ -277,7 +295,7 @@ public:
     //
     // Retrieve the earnings data for the ticker
     //
-    PEARNINGS_DATA GetEarningsData(
+    CEarningsDataPtr_t GetEarningsData(
         _In_ LPCSTR Ticker
         );
 

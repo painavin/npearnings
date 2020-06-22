@@ -1,6 +1,24 @@
 /*++
 
-    Copyright (c) Pai Financials LLC. All rights reserved.
+    Copyright (c) Pai Financials LLC.
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
 
 Module Name:
 
@@ -14,7 +32,7 @@ Abstract:
 
 Author:
 
-    Navin Pai (navin.pai@outlook.com)
+    nabieasaurus
 
 --*/
 #include "StdAfx.h"
@@ -92,7 +110,7 @@ Routine Description:
         itEarn != m_EarningsCache.end();
         itEarn++)
     {
-        PEARNINGS_DATA pData = itEarn->second;
+        CEarningsDataPtr_t pData = itEarn->second;
         delete pData;
     }
 
@@ -292,7 +310,7 @@ Return Value:
         //
         // If all fields were successfully read then allocate an entry and add it to the cache
         //
-        PEARNINGS_DATA pData = new EARNINGS_DATA(szSymbol, bIsAvailable, 
+        CEarningsDataPtr_t pData = new CEarningsData(szSymbol, bIsAvailable, 
             ftQuery.GetUtcTime(), ftEarnings.GetUtcTime(), szValue[E_EARNINGTIME], 
             atoi(szValue[E_EARNINGCONFIRMED]) == 0 ? false : true, 
             szValue[E_EARNINGNOTES]);
@@ -433,7 +451,7 @@ Return Value:
 
 
 _Use_decl_annotations_
-PEARNINGS_DATA
+CEarningsDataPtr_t
 CEarningsMgr::GetEarningsData(
     LPCSTR Ticker
     )
@@ -458,7 +476,7 @@ Return Value:
 --*/
 {
     CHAR            strSymbol[128];
-    PEARNINGS_DATA  pData = NULL;
+    CEarningsDataPtr_t  pData = NULL;
 
     //
     // Convert ticker to upper case
@@ -480,7 +498,7 @@ Return Value:
     {
         LogWarn("Symbol not in cache : %s", strSymbol);
 
-        pData = new EARNINGS_DATA(strSymbol);
+        pData = new CEarningsData(strSymbol);
         if (pData != NULL)
         {
             auto inserted = m_EarningsCache.insert(
@@ -742,7 +760,7 @@ _Use_decl_annotations_
 bool
 CEarningsMgr::ParseHtmlForEarningsDate(
     String& HtmlPage,
-    PEARNINGS_DATA PtrEarningsData
+    CEarningsDataPtr_t PtrEarningsData
     )
 /*++
 
@@ -821,7 +839,7 @@ Cleanup:
 _Use_decl_annotations_
 void 
 CEarningsMgr::QueryEarningsFromWebsite(
-    PEARNINGS_DATA PtrEarningsData
+    CEarningsDataPtr_t PtrEarningsData
     )
 /*++
 

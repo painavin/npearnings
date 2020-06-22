@@ -1,6 +1,24 @@
 /*++
 
-    Copyright (c) Pai Financials LLC. All rights reserved.
+    Copyright (c) Pai Financials LLC.
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
 
 Module Name:
 
@@ -12,7 +30,7 @@ Abstract:
 
 Author:
 
-    Navin Pai (navin.pai@outlook.com)
+    nabieasaurus
 
 --*/
 #include "stdafx.h"
@@ -24,7 +42,7 @@ Author:
 #define MAX_CURRENCY_LENGTH         6
 
 
-PEARNINGS_DATA
+CEarningsDataPtr_t
 GetEarningsData(
     LPCSTR Ticker
     )
@@ -41,7 +59,7 @@ Abstract:
 
 */
 {
-    PEARNINGS_DATA pEarningsData = NULL;
+    CEarningsDataPtr_t pEarningsData = NULL;
     EnterFunc();
 
     //
@@ -89,7 +107,7 @@ Abstract:
     EnterFunc();
     LPCSTR retVal = EARNINGS_NOT_AVAILABLE;
 
-    PEARNINGS_DATA pData = GetEarningsData(Ticker);
+    CEarningsDataPtr_t pData = GetEarningsData(Ticker);
 
     if ((pData != NULL) && (pData->IsAvailable == true))
     {
@@ -118,7 +136,7 @@ Abstract:
     EnterFunc();
     LPCSTR retVal = EARNINGS_NOT_AVAILABLE;
 
-    PEARNINGS_DATA pData = GetEarningsData(Ticker);
+    CEarningsDataPtr_t pData = GetEarningsData(Ticker);
 
     if ((pData != NULL) && (pData->IsAvailable == true))
     {
@@ -147,7 +165,7 @@ Abstract:
     EnterFunc();
     LPCSTR retVal = EARNINGS_NOT_AVAILABLE;
 
-    PEARNINGS_DATA pData = GetEarningsData(Ticker);
+    CEarningsDataPtr_t pData = GetEarningsData(Ticker);
 
     if ((pData != NULL) && (pData->IsAvailable == true))
     {
@@ -176,7 +194,7 @@ Abstract:
 {
     EnterFunc();
     INT retVal = 0;
-    PEARNINGS_DATA pData = GetEarningsData(Ticker);
+    CEarningsDataPtr_t pData = GetEarningsData(Ticker);
 
     if ((pData != NULL) && (pData->IsAvailable == true))
     {
@@ -204,7 +222,7 @@ Abstract:
 {
     EnterFunc();
     LPCSTR retVal = "";
-    PEARNINGS_DATA pData = GetEarningsData(Ticker);
+    CEarningsDataPtr_t pData = GetEarningsData(Ticker);
 
     if (pData != NULL)
     {
@@ -237,7 +255,7 @@ Abstract:
     EnterFunc();
     if (Notes == NULL) return;
 
-    PEARNINGS_DATA  pData = GetEarningsData(Ticker);
+    CEarningsDataPtr_t  pData = GetEarningsData(Ticker);
 
     if (pData != NULL)
     {

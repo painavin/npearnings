@@ -9,7 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dll", "dll", "{2A1DA9C0-DA1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{2DC6BE9E-AE6C-4350-95B3-3DCEC8490059}"
 	ProjectSection(SolutionItems) = preProject
-		NpEarnings Help.htm = NpEarnings Help.htm
 		README.md = README.md
 	EndProjectSection
 EndProject
